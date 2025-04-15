@@ -1,11 +1,19 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from "react";
+import { Sidebar } from "../components/layout/Sidebar";
+import { MainContent } from "../components/layout/MainContent";
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="bg-white overflow-hidden">
+      <div className="bg-[rgba(17,17,17,1)] max-md:max-w-full">
+        <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
+          <div className="w-1/5 max-md:w-full max-md:ml-0">
+            <Sidebar />
+          </div>
+          <div className="w-4/5 ml-5 max-md:w-full max-md:ml-0">
+            <MainContent />
+          </div>
+        </div>
       </div>
     </div>
   );
