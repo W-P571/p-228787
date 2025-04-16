@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Menu, X, ShoppingCart, User, WalletIcon } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Wallet } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
@@ -131,12 +131,12 @@ export const Header: React.FC = () => {
           {isSignedIn ? (
             <>
               <div className="hidden md:flex items-center mr-2 bg-mbegu-dark/60 rounded-full px-3 py-1 border border-white/10">
-                <WalletIcon className="h-4 w-4 text-mbegu-primary mr-1" />
+                <Wallet className="h-4 w-4 text-mbegu-primary mr-1" />
                 <span className="text-white text-sm">{walletBalance} KES</span>
               </div>
               <Link to="/wallet">
                 <Button size="sm" variant="ghost" className="text-white hover:text-mbegu-primary">
-                  <WalletIcon className="h-5 w-5" />
+                  <Wallet className="h-5 w-5" />
                 </Button>
               </Link>
               <Button size="sm" variant="ghost" className="text-white hover:text-mbegu-primary">
@@ -187,7 +187,7 @@ export const Header: React.FC = () => {
             {isSignedIn ? (
               <>
                 <div className="flex items-center py-2">
-                  <WalletIcon className="h-4 w-4 text-mbegu-primary mr-2" />
+                  <Wallet className="h-4 w-4 text-mbegu-primary mr-2" />
                   <span className="text-white">{walletBalance} KES</span>
                 </div>
                 <Link to="/wallet" className="text-white hover:text-mbegu-primary py-2 font-medium">

@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { ArrowRight, WalletIcon, Send, Clock, Plus, ArrowDown, Mail } from "lucide-react";
+import { ArrowRight, Wallet, Send, Clock, Plus, ArrowDown } from "lucide-react";
 
 const Wallet: React.FC = () => {
   const [walletBalance, setWalletBalance] = useState(500);
@@ -76,7 +76,7 @@ const Wallet: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center">
-                  <WalletIcon className="h-8 w-8 text-mbegu-primary mr-4" />
+                  <Wallet className="h-8 w-8 text-mbegu-primary mr-4" />
                   <div>
                     <span className="text-3xl font-bold text-white">{walletBalance}</span>
                     <span className="text-white ml-2">KES</span>
@@ -92,7 +92,7 @@ const Wallet: React.FC = () => {
               </CardHeader>
               <CardContent className="space-y-2">
                 <Button 
-                  className="w-full justify-between bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                  className="w-full justify-between bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90"
                   onClick={() => document.getElementById("deposit-tab")?.click()}
                 >
                   <span className="flex items-center">
@@ -102,7 +102,7 @@ const Wallet: React.FC = () => {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button 
-                  className="w-full justify-between bg-white/10 text-white hover:bg-white/20 font-medium"
+                  className="w-full justify-between bg-white/10 text-white hover:bg-white/20"
                   onClick={() => document.getElementById("send-tab")?.click()}
                 >
                   <span className="flex items-center">
@@ -112,7 +112,7 @@ const Wallet: React.FC = () => {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button 
-                  className="w-full justify-between bg-white/10 text-white hover:bg-white/20 font-medium"
+                  className="w-full justify-between bg-white/10 text-white hover:bg-white/20"
                   onClick={() => document.getElementById("history-tab")?.click()}
                 >
                   <span className="flex items-center">
@@ -173,14 +173,10 @@ const Wallet: React.FC = () => {
                       <p className="text-white mb-2">M-Pesa Till Details:</p>
                       <p className="text-white/70">Till Number: <span className="text-mbegu-primary">175372</span></p>
                       <p className="text-white/70">Business Name: <span className="text-mbegu-primary">Mbegu Traders</span></p>
-                      <div className="flex items-center mt-3 pt-3 border-t border-white/10">
-                        <Mail className="h-4 w-4 text-mbegu-primary mr-2" />
-                        <span className="text-white/70">Contact: <span className="text-mbegu-primary">info@mbegu.shop</span></span>
-                      </div>
                     </div>
                     
                     <Button 
-                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90"
                       onClick={handleDeposit}
                     >
                       Deposit to Wallet
@@ -214,7 +210,7 @@ const Wallet: React.FC = () => {
                     </div>
                     
                     <Button 
-                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90"
                       onClick={handleSend}
                       disabled={Number(sendAmount) > walletBalance}
                     >

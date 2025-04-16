@@ -29,7 +29,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({ seedlings }) => {
       {!showCheckout ? (
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="name" className="text-white font-medium">Full Name</Label>
+            <Label htmlFor="name" className="text-white">Full Name</Label>
             <Input 
               id="name" 
               placeholder="Your name" 
@@ -38,7 +38,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({ seedlings }) => {
           </div>
           
           <div className="grid gap-2">
-            <Label htmlFor="phone" className="text-white font-medium">Phone Number</Label>
+            <Label htmlFor="phone" className="text-white">Phone Number</Label>
             <Input 
               id="phone" 
               placeholder="07XX XXX XXX" 
@@ -47,18 +47,14 @@ export const OrderForm: React.FC<OrderFormProps> = ({ seedlings }) => {
           </div>
           
           <div className="grid gap-2">
-            <Label htmlFor="seedling" className="text-white font-medium">Seedling Type</Label>
+            <Label htmlFor="seedling" className="text-white">Seedling Type</Label>
             <Select value={selectedSeedling} onValueChange={setSelectedSeedling}>
-              <SelectTrigger id="seedling" className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white">
+              <SelectTrigger className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white">
                 <SelectValue placeholder="Select a seedling" />
               </SelectTrigger>
-              <SelectContent className="bg-mbegu-dark border-mbegu-dark/90">
+              <SelectContent>
                 {seedlings.map((seedling) => (
-                  <SelectItem 
-                    key={seedling.value} 
-                    value={seedling.value}
-                    className="text-white hover:bg-mbegu-primary/20 focus:bg-mbegu-primary/20"
-                  >
+                  <SelectItem key={seedling.value} value={seedling.value}>
                     {seedling.label}
                   </SelectItem>
                 ))}
@@ -67,7 +63,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({ seedlings }) => {
           </div>
           
           <div className="grid gap-2">
-            <Label htmlFor="quantity" className="text-white font-medium">Quantity</Label>
+            <Label htmlFor="quantity" className="text-white">Quantity</Label>
             <Input 
               id="quantity" 
               type="number" 
@@ -79,7 +75,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({ seedlings }) => {
           </div>
 
           <Button 
-            className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+            className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90"
             onClick={handleProceedToCheckout}
           >
             Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4" />

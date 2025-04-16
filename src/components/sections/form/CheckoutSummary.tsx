@@ -80,18 +80,17 @@ export const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({
             <p className="text-white text-sm mb-1">M-Pesa Till Number:</p>
             <p className="text-mbegu-primary text-lg font-medium">175372</p>
             <p className="text-white/70 text-xs">Business Name: Mbegu Traders</p>
-            <p className="text-white/70 text-xs mt-2">Contact: <span className="text-mbegu-primary">info@mbegu.shop</span></p>
           </div>
         </div>
       </div>
       
-      <Button className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium">
+      <Button className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90">
         Complete Order
       </Button>
       
       <Button 
         variant="outline" 
-        className="w-full border-white/10 text-white hover:bg-white/10 font-medium"
+        className="w-full border-white/10 text-white hover:bg-white/10"
         onClick={onBack}
       >
         Back to Order
