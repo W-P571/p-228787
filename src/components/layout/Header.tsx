@@ -1,14 +1,28 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "../ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Menu, X, ShoppingCart, User } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Wallet } from "lucide-react";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 export const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [walletBalance, setWalletBalance] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignIn = () => {
+    // This would be replaced with actual authentication logic
+    setIsSignedIn(true);
+    setWalletBalance(500); // Mock balance for demo
+  };
+
+  const handleSignOut = () => {
+    setIsSignedIn(false);
   };
 
   return (
@@ -114,18 +128,50 @@ export const Header: React.FC = () => {
 
         {/* User Controls */}
         <div className="flex items-center gap-4">
-          <button className="text-white hover:text-mbegu-primary">
-            <ShoppingCart className="h-5 w-5" />
-          </button>
-          <button className="text-white hover:text-mbegu-primary">
+          {isSignedIn ? (
+            <>
+              <div className="hidden md:flex items-center mr-2 bg-mbegu-dark/60 rounded-full px-3 py-1 border border-white/10">
+                <Wallet className="h-4 w-4 text-mbegu-primary mr-1" />
+                <span className="text-white text-sm">{walletBalance} KES</span>
+              </div>
+              <Link to="/wallet">
+                <Button size="sm" variant="ghost" className="text-white hover:text-mbegu-primary">
+                  <Wallet className="h-5 w-5" />
+                </Button>
+              </Link>
+              <Button size="sm" variant="ghost" className="text-white hover:text-mbegu-primary">
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              <Button 
+                size="sm" 
+                variant="outline" 
+                onClick={handleSignOut} 
+                className="hidden md:flex border-white/10 text-white hover:bg-white/10"
+              >
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <Button 
+              size="sm" 
+              variant="outline" 
+              onClick={handleSignIn} 
+              className="hidden md:flex border-white/10 text-white hover:bg-white/10"
+            >
+              Sign In
+            </Button>
+          )}
+          <Button size="sm" variant="ghost" className="text-white hover:text-mbegu-primary">
             <User className="h-5 w-5" />
-          </button>
-          <button 
+          </Button>
+          <Button 
+            size="sm"
+            variant="ghost"
             className="md:hidden text-white hover:text-mbegu-primary"
             onClick={toggleMenu}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -137,6 +183,33 @@ export const Header: React.FC = () => {
             <a href="/" className="text-white hover:text-mbegu-primary py-2 font-medium">Products</a>
             <a href="/" className="text-white hover:text-mbegu-primary py-2 font-medium">About</a>
             <a href="/" className="text-white hover:text-mbegu-primary py-2 font-medium">Contact</a>
+            
+            {isSignedIn ? (
+              <>
+                <div className="flex items-center py-2">
+                  <Wallet className="h-4 w-4 text-mbegu-primary mr-2" />
+                  <span className="text-white">{walletBalance} KES</span>
+                </div>
+                <Link to="/wallet" className="text-white hover:text-mbegu-primary py-2 font-medium">
+                  My Wallet
+                </Link>
+                <Button 
+                  variant="outline" 
+                  onClick={handleSignOut} 
+                  className="mt-2 w-full border-white/10 text-white hover:bg-white/10"
+                >
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Button 
+                variant="outline" 
+                onClick={handleSignIn} 
+                className="mt-2 w-full border-white/10 text-white hover:bg-white/10"
+              >
+                Sign In
+              </Button>
+            )}
           </nav>
         </div>
       )}
