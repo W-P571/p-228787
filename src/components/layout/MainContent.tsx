@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Hero } from "../sections/Hero";
 import { ProductCatalog } from "../sections/ProductCatalog";
@@ -9,16 +10,26 @@ import { Footer } from "./Footer";
 
 export const MainContent: React.FC = () => {
   return (
-    <main className="w-full">
-      <div className="flex w-full flex-col items-stretch max-md:max-w-full">
-        <Hero />
+    <main className="min-h-screen">
+      <Hero />
+      <div className="bg-gradient-to-b from-mbegu-dark to-mbegu-gray/50">
         <ProductCatalog />
-        <ReservationForm />
-        <Dashboard />
-        <Location />
-        <FAQ />
-        <Footer />
       </div>
+      <div className="py-12 px-4 bg-mbegu-dark">
+        <div className="container mx-auto">
+          <ReservationForm />
+        </div>
+      </div>
+      <div className="py-12 px-4 bg-mbegu-gray/30">
+        <div className="container mx-auto">
+          <Dashboard />
+        </div>
+      </div>
+      <Location />
+      <div className="bg-mbegu-dark">
+        <FAQ />
+      </div>
+      <Footer />
     </main>
   );
 };
