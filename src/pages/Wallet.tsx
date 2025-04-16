@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { ArrowRight, Wallet, Send, Clock, Plus, ArrowDown } from "lucide-react";
+import { ArrowRight, WalletIcon, Send, Clock, Plus, ArrowDown } from "lucide-react";
 
 const Wallet: React.FC = () => {
   const [walletBalance, setWalletBalance] = useState(500);
@@ -76,7 +76,7 @@ const Wallet: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center">
-                  <Wallet className="h-8 w-8 text-mbegu-primary mr-4" />
+                  <WalletIcon className="h-8 w-8 text-mbegu-primary mr-4" />
                   <div>
                     <span className="text-3xl font-bold text-white">{walletBalance}</span>
                     <span className="text-white ml-2">KES</span>
