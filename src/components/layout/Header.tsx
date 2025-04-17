@@ -11,8 +11,8 @@ export const Header: React.FC = () => {
   
   const handleNotification = () => {
     toast({
-      title: "MbeguOS Notification",
-      description: "Welcome to the agricultural operating system for modern farming",
+      title: "Mbegu Commercial Partners & Traders Notification",
+      description: "Welcome to the agricultural business platform for modern farming",
       duration: 3000,
     });
   };
@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center">
             <Link to="/" className="mr-4 flex items-center">
               <Sprout className="h-5 w-5 text-mbegu-primary mr-2" />
-              <h1 className="text-mbegu-primary text-xl font-bold">MbeguOS</h1>
+              <h1 className="text-mbegu-primary text-xl font-bold">Mbegu Commercial Partners & Traders</h1>
             </Link>
             
             <div className="hidden md:flex space-x-4 ml-8">

@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
       {/* System Status Banner */}
       <div className="bg-mbegu-primary/90 text-mbegu-dark px-4 py-2 rounded-md text-center font-medium text-sm mb-10 shadow-lg shadow-mbegu-primary/20 max-w-3xl mx-auto flex items-center justify-center">
         <Cpu className="h-4 w-4 mr-2" /> 
-        MbeguOS System Status: All agricultural modules operating at optimal performance
+        Mbegu Commercial Partners & Traders System Status: All agricultural modules operating at optimal performance
       </div>
 
       {/* Main Hero Content */}
@@ -20,15 +20,15 @@ export const Hero: React.FC = () => {
           {/* Text Content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6 animate-fade-in">
             <Badge className="bg-mbegu-primary/20 text-mbegu-primary hover:bg-mbegu-primary/30 mb-2">
-              AgriTech Operating System
+              Agricultural Solutions Platform
             </Badge>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-              The <span className="text-mbegu-primary">Operating System</span> for Modern Agriculture
+              The <span className="text-mbegu-primary">Agricultural Solutions</span> Platform for Modern Farming
             </h1>
             
             <p className="text-lg text-white/80 max-w-2xl mx-auto lg:mx-0">
-              MbeguOS integrates seedling management, weather analytics, and marketplace dynamics into a unified platform for agricultural optimization.
+              Mbegu Commercial Partners & Traders provides integrated seedling management, agricultural analytics, and marketplace solutions to optimize farming operations.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8">

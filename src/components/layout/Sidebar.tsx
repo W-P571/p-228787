@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -13,7 +12,7 @@ export const Sidebar: React.FC = () => {
         <div className="bg-mbegu-primary rounded-full w-10 h-10 flex items-center justify-center text-mbegu-dark font-bold text-xl">
           <Sprout className="h-5 w-5 text-mbegu-dark" />
         </div>
-        <span className="ml-2 text-white font-medium">MbeguOS</span>
+        <span className="ml-2 text-white font-medium">Mbegu Commercial Partners & Traders</span>
       </div>
 
       {/* Search Bar */}
