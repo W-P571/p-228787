@@ -5,11 +5,55 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { WalletIcon, Send, CreditCard, History, Landmark, Mail } from "lucide-react";
+import { WalletIcon, Send, CreditCard, History, Landmark, Mail, Star, GiftIcon, Award, TrendingUp } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Switch } from "../ui/switch";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const WalletSection: React.FC = () => {
   const [balance, setBalance] = useState(0);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [loyaltyPoints, setLoyaltyPoints] = useState(180);
+  const [showReferral, setShowReferral] = useState(false);
+  const { toast } = useToast();
+  const isMobile = useIsMobile();
+  
+  const handleSignIn = () => {
+    setIsSignedIn(true);
+    toast({
+      title: "Welcome back!",
+      description: "You've successfully signed in to your wallet.",
+      duration: 3000,
+    });
+  };
+
+  const handleDeposit = () => {
+    setBalance(prev => prev + 500);
+    setLoyaltyPoints(prev => prev + 10);
+    toast({
+      title: "Deposit successful",
+      description: "KES 500 has been added to your wallet. You earned 10 loyalty points!",
+      duration: 3000,
+    });
+  };
+
+  const handleSend = () => {
+    if (balance >= 200) {
+      setBalance(prev => prev - 200);
+      toast({
+        title: "Transfer successful",
+        description: "KES 200 has been sent successfully.",
+        duration: 3000,
+      });
+    } else {
+      toast({
+        title: "Insufficient funds",
+        description: "Please deposit more funds to complete this transaction.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
   
   return (
     <section className="py-12 px-4 bg-mbegu-gray/30">
@@ -28,10 +72,24 @@ export const WalletSection: React.FC = () => {
           <CardContent className="p-0">
             {isSignedIn ? (
               <>
-                <div className="flex justify-center items-center p-6 bg-mbegu-dark/50">
-                  <div className="text-center">
+                <div className="flex flex-col md:flex-row justify-between items-center p-6 bg-mbegu-dark/50">
+                  <div className="text-center mb-4 md:mb-0">
                     <p className="text-white/70 text-sm mb-1">Available Balance</p>
                     <h3 className="text-mbegu-primary text-4xl font-bold">KES {balance}</h3>
+                  </div>
+                  
+                  <div className="text-center px-6 py-3 bg-white/5 rounded-lg">
+                    <div className="flex items-center mb-1">
+                      <Star className="h-4 w-4 text-amber-400 fill-amber-400 mr-2" />
+                      <p className="text-white/70 text-sm">Loyalty Points</p>
+                    </div>
+                    <h3 className="text-amber-400 text-2xl font-bold">{loyaltyPoints} pts</h3>
+                    <div className="mt-2 text-xs text-white/50">
+                      <div className="flex items-center justify-center gap-1">
+                        <TrendingUp className="h-3 w-3" />
+                        <span>Level: {loyaltyPoints >= 200 ? 'Gold' : 'Silver'}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -69,6 +127,7 @@ export const WalletSection: React.FC = () => {
                           type="number"
                           min="100"
                           placeholder="500" 
+                          defaultValue="500"
                           className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white"
                         />
                       </div>
@@ -80,6 +139,13 @@ export const WalletSection: React.FC = () => {
                           placeholder="07XX XXX XXX" 
                           className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white"
                         />
+                      </div>
+
+                      <div className="flex items-center justify-between py-2">
+                        <Label htmlFor="earn-points" className="text-white cursor-pointer">
+                          Earn loyalty points
+                        </Label>
+                        <Switch id="earn-points" defaultChecked />
                       </div>
                     </div>
 
@@ -96,7 +162,10 @@ export const WalletSection: React.FC = () => {
                       </div>
                     </div>
                     
-                    <Button className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium">
+                    <Button 
+                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                      onClick={handleDeposit}
+                    >
                       <CreditCard className="h-4 w-4 mr-2" />
                       Deposit via M-Pesa
                     </Button>
@@ -119,13 +188,37 @@ export const WalletSection: React.FC = () => {
                           id="send-amount" 
                           type="number"
                           min="100"
+                          defaultValue="200"
                           placeholder="500" 
                           className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white"
                         />
                       </div>
+
+                      <div 
+                        className="bg-mbegu-primary/10 border border-mbegu-primary/20 rounded-lg p-3 cursor-pointer"
+                        onClick={() => setShowReferral(!showReferral)}
+                      >
+                        <div className="flex items-center">
+                          <GiftIcon className="h-4 w-4 text-mbegu-primary mr-2" />
+                          <span className="text-white text-sm font-medium">Send as a gift</span>
+                        </div>
+                        {showReferral && (
+                          <div className="mt-3 pt-3 border-t border-white/10">
+                            <Label htmlFor="gift-message" className="text-white text-xs">Gift Message</Label>
+                            <Input 
+                              id="gift-message" 
+                              placeholder="Add a personal message..." 
+                              className="mt-1 bg-mbegu-dark/70 border-mbegu-dark/90 text-white text-xs"
+                            />
+                          </div>
+                        )}
+                      </div>
                     </div>
                     
-                    <Button className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium">
+                    <Button 
+                      className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                      onClick={handleSend}
+                    >
                       <Send className="h-4 w-4 mr-2" />
                       Send Money
                     </Button>
@@ -136,25 +229,47 @@ export const WalletSection: React.FC = () => {
                       <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
                         <div>
                           <p className="text-white text-sm font-medium">Deposit</p>
-                          <p className="text-white/70 text-xs">May 12, 2025</p>
+                          <p className="text-white/70 text-xs">2025-04-17</p>
                         </div>
-                        <span className="text-green-400">+500 KES</span>
+                        <div className="text-right">
+                          <span className="text-green-400 block">+500 KES</span>
+                          <span className="text-amber-400 text-xs flex items-center justify-end">
+                            <Award className="h-3 w-3 mr-1" /> +10 pts
+                          </span>
+                        </div>
                       </div>
                       
                       <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
                         <div>
                           <p className="text-white text-sm font-medium">Purchase</p>
-                          <p className="text-white/70 text-xs">May 10, 2025</p>
+                          <p className="text-white/70 text-xs">2025-04-15</p>
                         </div>
-                        <span className="text-red-400">-300 KES</span>
+                        <div className="text-right">
+                          <span className="text-red-400 block">-300 KES</span>
+                          <span className="text-amber-400 text-xs flex items-center justify-end">
+                            <Award className="h-3 w-3 mr-1" /> +20 pts
+                          </span>
+                        </div>
                       </div>
                       
                       <div className="flex justify-between items-center p-3 bg-white/5 rounded-lg">
                         <div>
                           <p className="text-white text-sm font-medium">Deposit</p>
-                          <p className="text-white/70 text-xs">May 5, 2025</p>
+                          <p className="text-white/70 text-xs">2025-04-10</p>
                         </div>
-                        <span className="text-green-400">+1000 KES</span>
+                        <div className="text-right">
+                          <span className="text-green-400 block">+1000 KES</span>
+                          <span className="text-amber-400 text-xs flex items-center justify-end">
+                            <Award className="h-3 w-3 mr-1" /> +20 pts
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 p-3 bg-mbegu-primary/10 border border-mbegu-primary/20 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="text-white text-sm">Total Points Earned</span>
+                        <span className="text-amber-400 font-bold">{loyaltyPoints} pts</span>
                       </div>
                     </div>
                   </TabsContent>
@@ -165,11 +280,31 @@ export const WalletSection: React.FC = () => {
                 <WalletIcon className="h-12 w-12 text-mbegu-primary/50 mx-auto mb-4" />
                 <h3 className="text-white text-xl font-medium mb-2">Sign In to Access Your Wallet</h3>
                 <p className="text-white/70 mb-6">View your balance, make deposits, and transfer funds after signing in</p>
-                <Button className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium px-8">
+                <Button 
+                  className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium px-8"
+                  onClick={handleSignIn}
+                >
                   Sign In
                 </Button>
                 <div className="mt-6 pt-6 border-t border-white/10">
-                  <p className="text-white/70 text-sm">Need help? Contact us at <span className="text-mbegu-primary">info@mbegu.shop</span></p>
+                  <div className="bg-white/5 rounded-lg p-4 max-w-sm mx-auto">
+                    <div className="flex items-center justify-center mb-2">
+                      <Star className="h-5 w-5 text-amber-400 fill-amber-400 mr-2" />
+                      <span className="text-white text-sm font-medium">Loyalty Program</span>
+                    </div>
+                    <p className="text-white/70 text-xs mb-2">Join our loyalty program and earn points with every purchase and deposit</p>
+                    <div className="grid grid-cols-2 gap-2 mt-3 text-xs">
+                      <div className="bg-white/10 p-2 rounded">
+                        <span className="text-amber-400 font-bold block">Silver</span>
+                        <span className="text-white/60">0-199 points</span>
+                      </div>
+                      <div className="bg-white/10 p-2 rounded">
+                        <span className="text-amber-400 font-bold block">Gold</span>
+                        <span className="text-white/60">200+ points</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-white/70 text-sm mt-4">Need help? Contact us at <span className="text-mbegu-primary">info@mbegu.shop</span></p>
                 </div>
               </div>
             )}
