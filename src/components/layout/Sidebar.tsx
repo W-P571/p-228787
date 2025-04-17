@@ -2,7 +2,7 @@
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Search, Trophy, Gift, TrendingUp, Layers, Sprout, Plant, BarChart2, Settings, Users, Cloud, Map } from "lucide-react";
+import { Search, Trophy, Gift, TrendingUp, Layers, Sprout, Leaf, BarChart2, Settings, Users, Cloud, Map } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Sidebar: React.FC = () => {
@@ -31,7 +31,7 @@ export const Sidebar: React.FC = () => {
         <div className="space-y-1">
           <Link to="/">
             <Button variant="ghost" className="w-full justify-start text-white/80 hover:text-white hover:bg-white/5">
-              <Plant className="h-4 w-4 mr-3 text-mbegu-primary" />
+              <Leaf className="h-4 w-4 mr-3 text-mbegu-primary" />
               <span>Seedling Manager</span>
             </Button>
           </Link>
