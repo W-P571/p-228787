@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ThemeToggle } from "../ThemeProvider";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "../ui/button";
-import { Notification, UserCircle, Star } from "lucide-react";
+import { Bell, UserCircle, Star } from "lucide-react";
 
 export const Header: React.FC = () => {
   const { toast } = useToast();
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
                 className="relative rounded-full"
                 onClick={handleNotification}
               >
-                <Notification className="h-5 w-5 text-white/80" />
+                <Bell className="h-5 w-5 text-white/80" />
                 <span className="absolute top-0 right-0 w-2 h-2 bg-mbegu-primary rounded-full"></span>
               </Button>
               
