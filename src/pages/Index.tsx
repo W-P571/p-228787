@@ -1,24 +1,35 @@
 
 import React from "react";
-import { Sidebar } from "../components/layout/Sidebar";
-import { MainContent } from "../components/layout/MainContent";
-import { Header } from "../components/layout/Header";
+import { PageLayout } from "../components/layout/PageLayout";
+import { Hero } from "../components/sections/Hero";
+import { ProductCatalog } from "../components/sections/ProductCatalog";
+import { ReservationForm } from "../components/sections/ReservationForm";
+import { Dashboard } from "../components/sections/Dashboard";
+import { WalletSection } from "../components/sections/WalletSection";
+import { Location } from "../components/sections/Location";
+import { FAQ } from "../components/sections/FAQ";
+import { Footer } from "../components/layout/Footer";
 
 const Index: React.FC = () => {
   return (
-    <div className="bg-mbegu-dark min-h-screen overflow-x-hidden">
-      <div className="max-w-screen-2xl mx-auto">
-        <Header />
-        <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/5 md:min-h-screen">
-            <Sidebar />
-          </div>
-          <div className="w-full md:w-4/5">
-            <MainContent />
-          </div>
-        </div>
+    <PageLayout>
+      <Hero />
+      <div className="bg-gradient-to-b from-mbegu-dark to-mbegu-gray/50">
+        <ProductCatalog />
       </div>
-    </div>
+      <div className="py-12">
+        <ReservationForm />
+      </div>
+      <WalletSection />
+      <div className="py-12 bg-mbegu-gray/30">
+        <Dashboard />
+      </div>
+      <Location />
+      <div className="bg-mbegu-dark">
+        <FAQ />
+      </div>
+      <Footer />
+    </PageLayout>
   );
 };
 
