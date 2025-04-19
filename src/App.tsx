@@ -9,6 +9,9 @@ import NotFound from "./pages/NotFound";
 import Wallet from "./pages/Wallet";
 import Analytics from "./pages/Analytics";
 import Inventory from "./pages/Inventory";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import Auth from "./pages/Auth";
 import { ThemeProvider } from "./components/ThemeProvider";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,9 @@ const App = () => (
             <Route path="/wallet" element={<Wallet />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/inventory" element={<Inventory />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/auth" element={<Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
