@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "../ThemeProvider";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "../ui/button";
@@ -8,6 +8,7 @@ import { Bell, UserCircle, Star, Sprout, Layers } from "lucide-react";
 
 export const Header: React.FC = () => {
   const { toast } = useToast();
+  const location = useLocation();
   
   const handleNotification = () => {
     toast({
@@ -15,6 +16,10 @@ export const Header: React.FC = () => {
       description: "Welcome to the agricultural business platform for modern farming",
       duration: 3000,
     });
+  };
+
+  const isActiveLink = (path: string) => {
+    return location.pathname === path ? "text-mbegu-primary" : "text-white/80";
   };
   
   return (
@@ -28,10 +33,30 @@ export const Header: React.FC = () => {
             </Link>
             
             <div className="hidden md:flex space-x-4 ml-8">
-              <Link to="/" className="text-white/80 hover:text-white text-sm font-medium transition">Dashboard</Link>
-              <Link to="/inventory" className="text-white/80 hover:text-white text-sm font-medium transition">Inventory</Link>
-              <Link to="/analytics" className="text-white/80 hover:text-white text-sm font-medium transition">Analytics</Link>
-              <Link to="/wallet" className="text-white/80 hover:text-white text-sm font-medium transition">Marketplace</Link>
+              <Link 
+                to="/" 
+                className={`${isActiveLink("/")} hover:text-white text-sm font-medium transition`}
+              >
+                Dashboard
+              </Link>
+              <Link 
+                to="/inventory" 
+                className={`${isActiveLink("/inventory")} hover:text-white text-sm font-medium transition`}
+              >
+                Inventory
+              </Link>
+              <Link 
+                to="/analytics" 
+                className={`${isActiveLink("/analytics")} hover:text-white text-sm font-medium transition`}
+              >
+                Analytics
+              </Link>
+              <Link 
+                to="/wallet" 
+                className={`${isActiveLink("/wallet")} hover:text-white text-sm font-medium transition`}
+              >
+                Marketplace
+              </Link>
             </div>
           </div>
           
@@ -71,3 +96,4 @@ export const Header: React.FC = () => {
     </header>
   );
 };
+
