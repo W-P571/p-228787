@@ -8,10 +8,12 @@ import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface ProductCardProps {
-  imageSrc: string;
   title: string;
   description: string;
-  price?: string;
+  price: string;
+  status?: string;
+  image?: string;
+  imageSrc?: string;
   showLearnMore?: boolean;
   rating?: number;
   stockStatus?: "in-stock" | "low-stock" | "out-of-stock";
@@ -20,10 +22,12 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
-  imageSrc,
   title,
   description,
   price,
+  status,
+  image,
+  imageSrc,
   showLearnMore = false,
   rating = 4.5,
   stockStatus = "in-stock",
@@ -33,6 +37,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const { toast } = useToast();
   const isMobile = useIsMobile();
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Use image or imageSrc (for backward compatibility)
+  const imageSource = imageSrc || image || "/placeholder.svg";
 
   const handleAddToCart = () => {
     toast({
@@ -52,6 +59,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   // Get stock status indicator
   const getStockIndicator = () => {
+    if (status) {
+      return <span className="flex items-center text-amber-500"><Info className="h-3 w-3 mr-1" /> {status}</span>;
+    }
+    
     switch (stockStatus) {
       case "in-stock":
         return <span className="flex items-center text-green-500"><Check className="h-3 w-3 mr-1" /> In Stock</span>;
@@ -69,7 +80,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="relative">
         <div className="aspect-[4/3] w-full overflow-hidden bg-mbegu-gray/50">
           <img
-            src={imageSrc}
+            src={imageSource}
             alt={title}
             className="w-full h-full object-cover transition-transform group-hover:scale-105"
           />

@@ -33,21 +33,21 @@ const Inventory: React.FC = () => {
               <ProductCard 
                 title="Premium Seeds"
                 description="High-quality agricultural seeds"
-                price={29.99}
+                price="$29.99"
                 status="In Stock"
                 image="/placeholder.svg"
               />
               <ProductCard 
                 title="Organic Fertilizer"
                 description="Natural soil enhancement"
-                price={49.99}
+                price="$49.99"
                 status="Low Stock"
                 image="/placeholder.svg"
               />
               <ProductCard 
                 title="Growth Boosters"
                 description="Advanced plant nutrients"
-                price={34.99}
+                price="$34.99"
                 status="In Stock"
                 image="/placeholder.svg"
               />

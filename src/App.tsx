@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Wallet from "./pages/Wallet";
+import Analytics from "./pages/Analytics";
+import Inventory from "./pages/Inventory";
 import { ThemeProvider } from "./components/ThemeProvider";
 
 const queryClient = new QueryClient();
