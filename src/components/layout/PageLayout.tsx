@@ -11,7 +11,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
     <div className="bg-mbegu-dark min-h-screen overflow-x-hidden">
       <div className="max-w-screen-2xl mx-auto">
         <Header />
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 animate-fade-in">
           {children}
         </div>
       </div>
