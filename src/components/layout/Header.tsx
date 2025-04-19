@@ -29,8 +29,8 @@ export const Header: React.FC = () => {
             
             <div className="hidden md:flex space-x-4 ml-8">
               <Link to="/" className="text-white/80 hover:text-white text-sm font-medium transition">Dashboard</Link>
-              <Link to="/" className="text-white/80 hover:text-white text-sm font-medium transition">Inventory</Link>
-              <Link to="/" className="text-white/80 hover:text-white text-sm font-medium transition">Analytics</Link>
+              <Link to="/inventory" className="text-white/80 hover:text-white text-sm font-medium transition">Inventory</Link>
+              <Link to="/analytics" className="text-white/80 hover:text-white text-sm font-medium transition">Analytics</Link>
               <Link to="/wallet" className="text-white/80 hover:text-white text-sm font-medium transition">Marketplace</Link>
             </div>
           </div>
