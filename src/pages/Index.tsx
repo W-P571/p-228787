@@ -6,25 +6,62 @@ import { ProductCatalog } from "../components/sections/ProductCatalog";
 import { ReservationForm } from "../components/sections/ReservationForm";
 import { VirtualTour } from "../components/sections/VirtualTour";
 import { Footer } from "../components/layout/Footer";
+import { motion } from "framer-motion";
 
 const Index: React.FC = () => {
+  // Animation variants for staggered section reveals
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.3,
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    })
+  };
+  
   return (
     <PageLayout>
-      <div className="animate-fade-in">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        custom={0}
+        variants={sectionVariants}
+      >
         <Hero />
-      </div>
+      </motion.div>
       
-      <div className="bg-gradient-to-b from-mbegu-dark to-mbegu-gray/50 animate-fade-in" style={{ animationDelay: "200ms" }}>
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        custom={1}
+        variants={sectionVariants}
+        className="bg-gradient-to-b from-background to-muted/50"
+      >
         <ProductCatalog />
-      </div>
+      </motion.div>
       
-      <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        custom={2}
+        variants={sectionVariants}
+      >
         <VirtualTour />
-      </div>
+      </motion.div>
       
-      <div className="py-12 animate-fade-in" style={{ animationDelay: "600ms" }}>
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        custom={3}
+        variants={sectionVariants}
+        className="py-12"
+      >
         <ReservationForm />
-      </div>
+      </motion.div>
       
       <Footer />
     </PageLayout>
