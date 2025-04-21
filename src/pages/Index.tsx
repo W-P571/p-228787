@@ -1,19 +1,16 @@
-
 import React from "react";
 import { Sidebar } from "../components/layout/Sidebar";
 import { MainContent } from "../components/layout/MainContent";
-import { Header } from "../components/layout/Header";
 
 const Index: React.FC = () => {
   return (
-    <div className="bg-mbegu-dark min-h-screen overflow-x-hidden">
-      <div className="max-w-screen-2xl mx-auto">
-        <Header />
-        <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/5 md:min-h-screen">
+    <div className="bg-white overflow-hidden">
+      <div className="bg-[rgba(17,17,17,1)] max-md:max-w-full">
+        <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
+          <div className="w-1/5 max-md:w-full max-md:ml-0">
             <Sidebar />
           </div>
-          <div className="w-full md:w-4/5">
+          <div className="w-4/5 ml-5 max-md:w-full max-md:ml-0">
             <MainContent />
           </div>
         </div>
