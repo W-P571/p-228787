@@ -4,64 +4,27 @@ import { PageLayout } from "../components/layout/PageLayout";
 import { Hero } from "../components/sections/Hero";
 import { ProductCatalog } from "../components/sections/ProductCatalog";
 import { ReservationForm } from "../components/sections/ReservationForm";
-import { VirtualTour } from "../components/sections/VirtualTour";
+import { FarmShowcase } from "../components/sections/FarmShowcase";
 import { Footer } from "../components/layout/Footer";
-import { motion } from "framer-motion";
 
 const Index: React.FC = () => {
-  // Animation variants for staggered section reveals
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.3,
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    })
-  };
-  
   return (
     <PageLayout>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        custom={0}
-        variants={sectionVariants}
-      >
+      <div className="animate-fade-in">
         <Hero />
-      </motion.div>
+      </div>
       
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        custom={1}
-        variants={sectionVariants}
-        className="bg-gradient-to-b from-background to-muted/50"
-      >
+      <div className="bg-gradient-to-b from-mbegu-dark to-mbegu-gray/50 animate-fade-in" style={{ animationDelay: "200ms" }}>
         <ProductCatalog />
-      </motion.div>
+      </div>
       
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        custom={2}
-        variants={sectionVariants}
-      >
-        <VirtualTour />
-      </motion.div>
+      <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
+        <FarmShowcase />
+      </div>
       
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        custom={3}
-        variants={sectionVariants}
-        className="py-12"
-      >
+      <div className="py-12 animate-fade-in" style={{ animationDelay: "600ms" }}>
         <ReservationForm />
-      </motion.div>
+      </div>
       
       <Footer />
     </PageLayout>
