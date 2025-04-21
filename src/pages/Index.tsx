@@ -4,7 +4,7 @@ import { PageLayout } from "../components/layout/PageLayout";
 import { Hero } from "../components/sections/Hero";
 import { ProductCatalog } from "../components/sections/ProductCatalog";
 import { ReservationForm } from "../components/sections/ReservationForm";
-import { FarmShowcase } from "../components/sections/FarmShowcase";
+import { VirtualTour } from "../components/sections/VirtualTour";
 import { Footer } from "../components/layout/Footer";
 
 const Index: React.FC = () => {
@@ -19,7 +19,7 @@ const Index: React.FC = () => {
       </div>
       
       <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
-        <FarmShowcase />
+        <VirtualTour />
       </div>
       
       <div className="py-12 animate-fade-in" style={{ animationDelay: "600ms" }}>
