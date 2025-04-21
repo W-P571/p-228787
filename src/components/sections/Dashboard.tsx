@@ -73,7 +73,7 @@ export const Dashboard: React.FC = () => {
                 <h3 className="text-white text-lg font-medium mb-3">Order Summary</h3>
                 <div className="bg-white/5 p-6 rounded-lg border border-white/10 text-center">
                   <p className="text-white/70 mb-4">Sign in to view your order details and track deliveries</p>
-                  <Button className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium">
+                  <Button className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90">
                     Sign In
                   </Button>
                 </div>
