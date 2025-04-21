@@ -10,10 +10,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Victoria F1",
       description: "Premium celery seedling with crisp, fresh leaves.",
       price: "KES 120",
-      rating: 4.8,
-      stockStatus: "in-stock" as const,
-      category: "Vegetable",
-      tags: ["Organic", "High Yield"],
     },
     {
       id: 2,
@@ -21,10 +17,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Gloria F1",
       description: "Robust cabbage seedling known for its healthy growth.",
       price: "KES 150",
-      rating: 4.6,
-      stockStatus: "in-stock" as const,
-      category: "Vegetable",
-      tags: ["Pest Resistant", "Popular"],
     },
     {
       id: 3,
@@ -32,10 +24,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Pretoria F1",
       description: "Reliable seedling for vibrant growth and high yield.",
       price: "KES 130",
-      rating: 4.4,
-      stockStatus: "low-stock" as const,
-      category: "Vegetable",
-      tags: ["High Yield"],
     },
     {
       id: 4,
@@ -43,10 +31,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Baraka F1",
       description: "Seedling with excellent flavor and texture.",
       price: "KES 140",
-      rating: 4.7,
-      stockStatus: "in-stock" as const,
-      category: "Vegetable",
-      tags: ["Flavor Enhanced"],
     },
     {
       id: 5,
@@ -54,10 +38,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Ansal (Tomato)",
       description: "Vigorous tomato seedling ideal for organic farming.",
       price: "KES 110",
-      rating: 4.3,
-      stockStatus: "in-stock" as const,
-      category: "Fruit",
-      tags: ["Organic", "Vitamin Rich"],
     },
     {
       id: 6,
@@ -65,22 +45,14 @@ export const ProductCatalog: React.FC = () => {
       title: "Terminator F1",
       description: "Robust seedling designed for high resistance and yield.",
       price: "KES 160",
-      rating: 4.9,
-      stockStatus: "low-stock" as const,
-      category: "Vegetable",
-      tags: ["Premium", "Pest Resistant"],
     },
     {
       id: 7,
       imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/e880bb975299795e90ef53e910fe8c441436ac32?placeholderIfAbsent=true",
       title: "Managu",
       description: "Nutritious leafy green seedling for sustainable diets.",
-      price: "KES 100",
-      rating: 4.2,
-      stockStatus: "in-stock" as const,
-      category: "Leafy Green",
-      tags: ["Nutritious"],
       showLearnMore: true,
+      price: "KES 100",
     },
     {
       id: 8,
@@ -88,10 +60,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Sukumawiki Tausi F1",
       description: "Durable kale seedling for sustained production.",
       price: "KES 130",
-      rating: 4.5,
-      stockStatus: "out-of-stock" as const,
-      category: "Leafy Green",
-      tags: ["Durable", "Popular"],
     },
     {
       id: 9,
@@ -99,10 +67,6 @@ export const ProductCatalog: React.FC = () => {
       title: "Sukumawiki Spiner F1",
       description: "Premium kale variety with robust nutritional value.",
       price: "KES 140",
-      rating: 4.4,
-      stockStatus: "in-stock" as const,
-      category: "Leafy Green",
-      tags: ["Nutrient Rich"],
     },
   ];
 
@@ -127,10 +91,6 @@ export const ProductCatalog: React.FC = () => {
               description={product.description}
               price={product.price}
               showLearnMore={product.showLearnMore}
-              rating={product.rating}
-              stockStatus={product.stockStatus}
-              category={product.category}
-              tags={product.tags}
             />
           ))}
         </div>

@@ -1,33 +1,24 @@
 
 import React from "react";
-import { PageLayout } from "../components/layout/PageLayout";
-import { Hero } from "../components/sections/Hero";
-import { ProductCatalog } from "../components/sections/ProductCatalog";
-import { ReservationForm } from "../components/sections/ReservationForm";
-import { FarmShowcase } from "../components/sections/FarmShowcase";
-import { Footer } from "../components/layout/Footer";
+import { Sidebar } from "../components/layout/Sidebar";
+import { MainContent } from "../components/layout/MainContent";
+import { Header } from "../components/layout/Header";
 
 const Index: React.FC = () => {
   return (
-    <PageLayout>
-      <div className="animate-fade-in">
-        <Hero />
+    <div className="bg-mbegu-dark min-h-screen overflow-x-hidden">
+      <div className="max-w-screen-2xl mx-auto">
+        <Header />
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-1/5 md:min-h-screen">
+            <Sidebar />
+          </div>
+          <div className="w-full md:w-4/5">
+            <MainContent />
+          </div>
+        </div>
       </div>
-      
-      <div className="bg-gradient-to-b from-mbegu-dark to-mbegu-gray/50 animate-fade-in" style={{ animationDelay: "200ms" }}>
-        <ProductCatalog />
-      </div>
-      
-      <div className="animate-fade-in" style={{ animationDelay: "400ms" }}>
-        <FarmShowcase />
-      </div>
-      
-      <div className="py-12 animate-fade-in" style={{ animationDelay: "600ms" }}>
-        <ReservationForm />
-      </div>
-      
-      <Footer />
-    </PageLayout>
+    </div>
   );
 };
 

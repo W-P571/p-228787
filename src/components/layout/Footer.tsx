@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Twitter, Facebook, Instagram, Phone, MapPin, Mail, ExternalLink } from "lucide-react";
 
@@ -8,9 +9,9 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* About */}
           <div>
-            <h3 className="text-white font-display font-semibold text-lg mb-4">About Mbegu Commercial Partners & Traders</h3>
+            <h3 className="text-white font-display font-semibold text-lg mb-4">About Mbegu Traders</h3>
             <p className="text-white/70 text-sm mb-4">
-              Mbegu Commercial Partners & Traders specializes in providing premium hybrid seedlings and comprehensive agricultural solutions to farmers across Kenya, with a focus on quality and sustainability.
+              Mbegu Traders specializes in providing premium hybrid seedlings to farmers across Kenya, with a focus on quality and sustainability.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-white/50 hover:text-mbegu-primary">
@@ -101,7 +102,7 @@ export const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-6 text-center">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Mbegu Commercial Partners & Traders. All rights reserved.
+            © {new Date().getFullYear()} Mbegu Traders. All rights reserved.
           </p>
         </div>
       </div>
