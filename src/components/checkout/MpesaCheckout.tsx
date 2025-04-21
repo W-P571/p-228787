@@ -7,6 +7,8 @@ import { Label } from "../ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Phone, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import { generateTrackingId, sendOrderNotification } from "@/services/NotificationService";
+import { OrderReceipt } from "./OrderReceipt";
 
 interface CartItem {
   id: string;
@@ -32,8 +34,10 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
   onBack
 }) => {
   const [phoneNumber, setPhoneNumber] = useState("07");
-  const [paymentStep, setPaymentStep] = useState<"details" | "processing" | "confirmation" | "complete">("details");
+  const [paymentStep, setPaymentStep] = useState<"details" | "processing" | "confirmation" | "complete" | "receipt">("details");
   const [otpValue, setOtpValue] = useState("");
+  const [trackingId, setTrackingId] = useState("");
+  const [orderId, setOrderId] = useState("");
   const { toast } = useToast();
   
   const handleInitiatePayment = () => {
@@ -72,11 +76,49 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
     // For demo purposes, we'll simulate the process
     setPaymentStep("complete");
     
+    // Generate unique tracking ID and order ID
+    const newTrackingId = generateTrackingId();
+    const newOrderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
+    
+    setTrackingId(newTrackingId);
+    setOrderId(newOrderId);
+    
+    // Send notification
+    sendOrderNotification({
+      orderId: newOrderId,
+      customerName: "Customer",
+      phoneNumber: phoneNumber,
+      totalAmount: total,
+      trackingId: newTrackingId,
+      items: cartItems.map(item => ({
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price
+      })),
+      deliveryAddress: "Customer Address (will be collected)",
+      deliveryDate: "Within 3-5 business days"
+    }, ["sms"]).then(success => {
+      if (success) {
+        console.log("Notification sent successfully");
+      } else {
+        console.error("Failed to send notification");
+      }
+    });
+    
     toast({
       title: "Payment Successful",
       description: "Your order has been placed successfully",
       duration: 3000,
     });
+  };
+
+  const handleViewReceipt = () => {
+    setPaymentStep("receipt");
+  };
+  
+  const handleContinueShopping = () => {
+    // Reset the checkout flow and return to product catalog
+    window.location.href = "/";
   };
   
   return (
@@ -199,17 +241,47 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
                   Your order has been placed successfully and will be processed shortly.
                 </p>
                 <div className="bg-white/5 p-4 rounded-lg mb-4">
-                  <p className="text-white/70 text-sm">M-Pesa Transaction Details:</p>
-                  <p className="text-white font-medium">KES {total} paid from {phoneNumber}</p>
-                  <p className="text-white/60 text-xs mt-1">Transaction ID: MPE-{Math.floor(Math.random() * 1000000)}</p>
+                  <p className="text-white/70 text-sm">Order Tracking Details:</p>
+                  <p className="text-white font-medium">Tracking ID: {trackingId}</p>
+                  <p className="text-white/60 text-xs mt-1">Order ID: {orderId}</p>
+                  <p className="text-white/60 text-xs mt-1">M-Pesa Transaction ID: MPE-{Math.floor(Math.random() * 1000000)}</p>
                 </div>
-                <Button
-                  className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
-                  asChild
-                >
-                  <a href="/profile">View My Orders</a>
-                </Button>
+                <div className="flex flex-col gap-3">
+                  <Button
+                    className="bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium"
+                    onClick={handleViewReceipt}
+                  >
+                    View Receipt
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-white/10 text-white hover:bg-white/10 font-medium"
+                    onClick={handleContinueShopping}
+                  >
+                    Continue Shopping
+                  </Button>
+                </div>
               </div>
+            )}
+            
+            {paymentStep === "receipt" && (
+              <OrderReceipt 
+                order={{
+                  orderId,
+                  trackingId,
+                  customerName: "Customer",
+                  phoneNumber,
+                  totalAmount: total,
+                  items: cartItems.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity,
+                    price: item.price
+                  })),
+                  deliveryAddress: "Customer Address (will be collected)",
+                  deliveryDate: "Within 3-5 business days"
+                }}
+                onClose={handleContinueShopping}
+              />
             )}
           </CardContent>
         </Card>

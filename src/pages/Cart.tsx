@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../co
 import { Button } from "../components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-import { X, Plus, Minus, ShoppingCart, ArrowRight, Leaf } from "lucide-react";
+import { X, Plus, Minus, ShoppingCart, ArrowRight, Leaf, Truck } from "lucide-react";
 import { MpesaCheckout } from "../components/checkout/MpesaCheckout";
 
 interface CartItem {
@@ -68,9 +68,14 @@ const Cart: React.FC = () => {
     setShowCheckout(false);
   };
   
+  // Animate cart items
+  const getAnimationDelay = (index: number) => {
+    return `${index * 100}ms`;
+  };
+  
   return (
     <PageLayout>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">
             {!showCheckout ? (
@@ -94,8 +99,12 @@ const Cart: React.FC = () => {
             {cartItems.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-4">
-                  {cartItems.map((item) => (
-                    <Card key={item.id} className="bg-mbegu-card border-white/10">
+                  {cartItems.map((item, index) => (
+                    <Card 
+                      key={item.id} 
+                      className="bg-mbegu-card border-white/10 animate-fade-in hover:border-mbegu-primary/30 transition-colors"
+                      style={{ animationDelay: getAnimationDelay(index) }}
+                    >
                       <CardContent className="p-4">
                         <div className="flex items-center">
                           <div className="w-16 h-16 rounded-md bg-mbegu-dark/50 mr-4 relative overflow-hidden">
@@ -152,10 +161,23 @@ const Cart: React.FC = () => {
                       </CardContent>
                     </Card>
                   ))}
+                  
+                  <Card className="bg-mbegu-card border-white/10 p-4 animate-fade-in" style={{ animationDelay: getAnimationDelay(cartItems.length) }}>
+                    <div className="flex items-start">
+                      <Truck className="h-5 w-5 text-mbegu-primary mt-1 mr-3" />
+                      <div>
+                        <h3 className="text-white font-medium mb-1">Delivery Information</h3>
+                        <p className="text-white/70 text-sm">
+                          We deliver seedlings across Kenya within 3-5 business days. All orders are carefully packaged to 
+                          ensure seedlings arrive in optimal condition. You'll receive SMS tracking updates throughout the delivery process.
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
                 
                 <div>
-                  <Card className="bg-mbegu-card border-white/10 sticky top-24">
+                  <Card className="bg-mbegu-card border-white/10 sticky top-24 animate-fade-in" style={{ animationDelay: getAnimationDelay(cartItems.length + 1) }}>
                     <CardHeader>
                       <CardTitle className="text-white text-lg">Order Summary</CardTitle>
                     </CardHeader>
@@ -199,7 +221,7 @@ const Cart: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <Card className="bg-mbegu-card border-white/10 p-8 text-center">
+              <Card className="bg-mbegu-card border-white/10 p-8 text-center animate-fade-in">
                 <div className="flex flex-col items-center">
                   <ShoppingCart className="h-12 w-12 text-white/30 mb-4" />
                   <CardTitle className="text-white mb-2">Your cart is empty</CardTitle>
