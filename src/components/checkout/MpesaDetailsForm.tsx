@@ -38,7 +38,7 @@ export const MpesaDetailsForm: React.FC<MpesaDetailsFormProps> = ({
         placeholder="07XX XXX XXX"
         className="bg-mbegu-dark/70 border-mbegu-dark/90 text-white"
         value={phoneNumber}
-        onChange={(e) => onPhoneNumberChange(e.target.value)}
+        onChange={e => onPhoneNumberChange(e.target.value)}
       />
       <p className="text-white/60 text-xs">
         Example: 0712345678 (without country code)

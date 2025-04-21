@@ -1,18 +1,13 @@
+
 import React, { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Phone, CheckCircle, Loader2, AlertCircle } from "lucide-react";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { generateTrackingId, sendOrderNotification } from "@/services/NotificationService";
-import { OrderReceipt } from "./OrderReceipt";
 import { MpesaDetailsForm } from "./MpesaDetailsForm";
 import { MpesaProcessing } from "./MpesaProcessing";
 import { MpesaOtpConfirmation } from "./MpesaOtpConfirmation";
 import { MpesaComplete } from "./MpesaComplete";
 import { OrderSummary } from "./OrderSummary";
+import { OrderReceipt } from "./OrderReceipt";
 
 interface CartItem {
   id: string;
@@ -43,7 +38,7 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
   const [trackingId, setTrackingId] = useState("");
   const [orderId, setOrderId] = useState("");
   const { toast } = useToast();
-  
+
   const handleInitiatePayment = () => {
     if (phoneNumber.length < 10) {
       toast({
@@ -54,14 +49,12 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
       });
       return;
     }
-    
     setPaymentStep("processing");
-    
     setTimeout(() => {
       setPaymentStep("confirmation");
     }, 2000);
   };
-  
+
   const handleConfirmPayment = () => {
     if (otpValue.length < 6) {
       toast({
@@ -72,15 +65,12 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
       });
       return;
     }
-    
     setPaymentStep("complete");
-    
     const newTrackingId = generateTrackingId();
     const newOrderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
-    
     setTrackingId(newTrackingId);
     setOrderId(newOrderId);
-    
+
     sendOrderNotification({
       orderId: newOrderId,
       customerName: "Customer",
@@ -101,7 +91,7 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
         console.error("Failed to send notification");
       }
     });
-    
+
     toast({
       title: "Payment Successful",
       description: "Your order has been placed successfully",
@@ -112,11 +102,11 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
   const handleViewReceipt = () => {
     setPaymentStep("receipt");
   };
-  
+
   const handleContinueShopping = () => {
     window.location.href = "/";
   };
-  
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       <div className="md:col-span-3">
@@ -176,7 +166,7 @@ export const MpesaCheckout: React.FC<MpesaCheckoutProps> = ({
           </div>
         </div>
       </div>
-      
+
       <div className="md:col-span-2">
         <OrderSummary
           cartItems={cartItems}
