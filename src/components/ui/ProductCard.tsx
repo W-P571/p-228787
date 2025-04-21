@@ -58,11 +58,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </Button>
         ) : (
           <>
-            <Button className="flex-1 bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90">
+            <Button className="w-full bg-mbegu-primary text-mbegu-dark hover:bg-mbegu-primary/90 font-medium">
               <ShoppingBag className="h-4 w-4 mr-2" />
               Add to Cart
             </Button>
-            <Button variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/10">
+            <Button 
+              variant="outline" 
+              className="w-full border-white/10 text-white hover:bg-white/10 font-medium"
+            >
               Preorder
             </Button>
           </>
