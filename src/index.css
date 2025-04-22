@@ -1,184 +1,36 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   :root {
-    --background: 210 33% 98%;
-    --foreground: 215 25% 27%;
+    --background: 34 89% 63%; /* Orange-based background */
+    --foreground: 151 55% 41%; /* Green text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 34 89% 63%; /* Orange text on card */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --primary: 34 89% 63%; /* Bright Orange */
+    --primary-foreground: 151 55% 41%; /* Green foreground */
 
-    --primary: 142 38% 49%;
-    --primary-foreground: 0 0% 100%;
+    --secondary: 151 55% 41%; /* Green */
+    --secondary-foreground: 0 0% 100%; /* White text */
 
-    --secondary: 84 52% 53%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 15% 50%;
-
-    --accent: 54 100% 62%;
-    --accent-foreground: 210 25% 25%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 142 38% 49%;
-
-    --radius: 0.6rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --accent: 0 0% 100%; /* White accent */
+    --accent-foreground: 34 89% 63%; /* Orange text */
   }
 
   .dark {
-    --background: 215 30% 18%;
-    --foreground: 210 20% 90%;
+    --background: 34 89% 53%; /* Darker Orange */
+    --foreground: 151 55% 31%; /* Darker Green */
 
-    --card: 215 28% 20%;
-    --card-foreground: 210 20% 90%;
+    --card: 34 89% 63%; /* Orange card */
+    --card-foreground: 0 0% 100%; /* White text */
 
-    --popover: 215 28% 20%;
-    --popover-foreground: 210 20% 90%;
+    --primary: 151 55% 41%; /* Green */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --primary: 142 38% 49%;
-    --primary-foreground: 0 0% 100%;
+    --secondary: 34 89% 63%; /* Orange */
+    --secondary-foreground: 0 0% 100%; /* White text */
 
-    --secondary: 84 52% 43%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 215 25% 25%;
-    --muted-foreground: 210 15% 70%;
-
-    --accent: 54 100% 62%;
-    --accent-foreground: 215 30% 18%;
-
-    --destructive: 0 62.8% 40.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 215 25% 25%;
-    --input: 215 25% 25%;
-    --ring: 142 38% 49%;
-    
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-body transition-colors duration-300;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-medium;
-  }
-  
-  .light .mbegu-card {
-    @apply bg-white border-gray-200 shadow-sm;
-  }
-  
-  .dark .mbegu-card {
-    @apply bg-mbegu-dark border-white/10;
-  }
-  
-  .light .mbegu-input {
-    @apply bg-gray-50 border-gray-300 text-gray-900;
-  }
-  
-  .dark .mbegu-input {
-    @apply bg-mbegu-dark/70 border-mbegu-dark/90 text-white;
-  }
-
-  /* Animation utilities */
-  .fade-in {
-    @apply opacity-0 animate-[fade-in_0.5s_ease-out_forwards];
-  }
-  
-  .slide-in {
-    @apply translate-y-4 opacity-0 animate-[slide-in_0.5s_ease-out_forwards];
-  }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slide-in {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Custom card styles */
-  .product-card {
-    @apply relative overflow-hidden rounded-xl transition-all duration-300;
-  }
-  
-  .product-card:hover {
-    @apply shadow-lg transform -translate-y-1;
-  }
-  
-  /* Custom button styles */
-  .btn-primary {
-    @apply bg-mbegu-primary text-white hover:bg-mbegu-primary/90 transition-all;
-  }
-  
-  .btn-secondary {
-    @apply bg-mbegu-secondary text-white hover:bg-mbegu-secondary/90 transition-all;
-  }
-  
-  /* Image zoom effect */
-  .img-zoom {
-    @apply transition-transform duration-500;
-  }
-  
-  .img-zoom:hover {
-    @apply scale-110;
-  }
-  
-  /* Custom scroll for filters */
-  .custom-scrollbar {
-    @apply overflow-auto;
-  }
-  
-  /* Filter active state */
-  .filter-active {
-    @apply bg-mbegu-primary/10 border-mbegu-primary text-mbegu-primary;
+    --accent: 34 89% 63%; /* Orange accent */
+    --accent-foreground: 0 0% 100%; /* White text */
   }
 }
