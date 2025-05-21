@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "../ThemeProvider";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "../ui/button";
-import { ShoppingBag, Bell, UserCircle, Sprout, Menu, X, ChevronDown } from "lucide-react";
+import { ShoppingBag, Bell, UserCircle, Sprout, Menu, X, ChevronDown, MessageCircle } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -27,6 +27,7 @@ export const Header: React.FC = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [timeOfDay, setTimeOfDay] = useState("");
   
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +42,18 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Determine time of day for personalized greeting
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      setTimeOfDay("morning");
+    } else if (hour >= 12 && hour < 18) {
+      setTimeOfDay("afternoon");
+    } else {
+      setTimeOfDay("evening");
+    }
+  }, []);
+
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -48,9 +61,17 @@ export const Header: React.FC = () => {
 
   const handleNotification = () => {
     toast({
-      title: "Mbegu Updates",
-      description: "Welcome to our new interactive platform",
+      title: `Good ${timeOfDay}!`,
+      description: "We've got some exciting updates for you today. Check them out!",
       duration: 3000,
+    });
+  };
+
+  const handleChatSupport = () => {
+    toast({
+      title: "Mbegu Support",
+      description: "Our support team will be with you shortly. Thank you for your patience!",
+      duration: 5000,
     });
   };
 
@@ -112,7 +133,7 @@ export const Header: React.FC = () => {
                             >
                               <div className="text-sm font-medium">Seedlings</div>
                               <p className="text-xs text-muted-foreground">
-                                Browse our premium hybrid seedling collection
+                                Premium hybrid seedlings for maximum yield
                               </p>
                             </Link>
                           </NavigationMenuLink>
@@ -125,7 +146,7 @@ export const Header: React.FC = () => {
                             >
                               <div className="text-sm font-medium">Equipment</div>
                               <p className="text-xs text-muted-foreground">
-                                Agricultural tools and machinery
+                                High-quality tools for modern farming
                               </p>
                             </Link>
                           </NavigationMenuLink>
@@ -178,6 +199,15 @@ export const Header: React.FC = () => {
                 <span className="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
               </Button>
               
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative rounded-full hover:bg-primary/10"
+                onClick={handleChatSupport}
+              >
+                <MessageCircle className="h-5 w-5" />
+              </Button>
+              
               <Link to="/cart">
                 <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 relative">
                   <ShoppingBag className="h-5 w-5" />
@@ -198,6 +228,10 @@ export const Header: React.FC = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
+                <div className="px-4 py-3 border-b border-border">
+                  <p className="text-sm font-medium">Good {timeOfDay}</p>
+                  <p className="text-xs text-muted-foreground">Welcome to Mbegu!</p>
+                </div>
                 <Link to="/profile">
                   <DropdownMenuItem className="cursor-pointer">
                     <UserCircle className="h-4 w-4 mr-2" />
@@ -303,6 +337,19 @@ export const Header: React.FC = () => {
                 Account
               </Button>
             </Link>
+          </div>
+          
+          <div className="py-3 px-4 text-center text-sm text-muted-foreground border-t border-border/50">
+            <p>Good {timeOfDay}! How can we help you today?</p>
+            <Button 
+              variant="link" 
+              size="sm" 
+              className="mt-2 text-primary"
+              onClick={handleChatSupport}
+            >
+              <MessageCircle className="h-4 w-4 mr-2" />
+              Chat with support
+            </Button>
           </div>
         </motion.div>
       )}
