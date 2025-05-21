@@ -5,36 +5,149 @@
 
 @layer base {
   :root {
-    --background: 34 89% 63%; /* Orange-based background */
-    --foreground: 151 55% 41%; /* Green text */
+    --background: 222 47% 11%; /* Dark blue background */
+    --foreground: 210 40% 98%; /* Light text */
 
-    --card: 0 0% 100%; /* White card background */
-    --card-foreground: 34 89% 63%; /* Orange text on card */
+    --card: 222 47% 15%; /* Slightly lighter card background */
+    --card-foreground: 210 40% 98%; /* Light text on card */
 
-    --primary: 34 89% 63%; /* Bright Orange */
-    --primary-foreground: 151 55% 41%; /* Green foreground */
+    --primary: 34 94% 58%; /* Vibrant orange */
+    --primary-foreground: 222 47% 11%; /* Dark text on primary */
 
-    --secondary: 151 55% 41%; /* Green */
-    --secondary-foreground: 0 0% 100%; /* White text */
+    --secondary: 142 71% 45%; /* Vibrant green */
+    --secondary-foreground: 222 47% 11%; /* Dark text on secondary */
 
-    --accent: 0 0% 100%; /* White accent */
-    --accent-foreground: 34 89% 63%; /* Orange text */
+    --accent: 210 40% 96%; /* Light accent */
+    --accent-foreground: 222 47% 11%; /* Dark text on accent */
+
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --muted: 223 47% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 216 34% 17%;
+
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 34 89% 53%; /* Darker Orange */
-    --foreground: 151 55% 31%; /* Darker Green */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 34 89% 63%; /* Orange card */
-    --card-foreground: 0 0% 100%; /* White text */
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
 
-    --primary: 151 55% 41%; /* Green */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 34 94% 58%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 34 89% 63%; /* Orange */
-    --secondary-foreground: 0 0% 100%; /* White text */
+    --secondary: 142 71% 45%;
+    --secondary-foreground: 222 47% 11%;
 
-    --accent: 34 89% 63%; /* Orange accent */
-    --accent-foreground: 0 0% 100%; /* White text */
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+
+    --muted: 223 47% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 216 34% 17%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px rgba(255, 126, 0, 0.4);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 126, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 126, 0, 0.6);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
   }
 }
